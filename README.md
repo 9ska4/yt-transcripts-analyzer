@@ -1,5 +1,9 @@
 # yt-transcripts-analyzer
 
+## WHERE ARE YOU?
+Let's imagine you're interested in a topic. It's a social/political issue, so you search through video interviews. 
+It would take you years to watch them yourself, so you want to collect automatically generated transcripts,
+then you can go as far as your imagine can drive you :)
 
 ## 1. Setup:
 
@@ -28,6 +32,7 @@ pip install -r requirements.txt
 ```shell
 chmod +x scripts/get_videos_for_playlists.py
 chmod +x scripts/download_transcriptions.py
+chmod +x scripts/verify_downloaded_transcriptions.py
 ```
 
 ## 2. Videos' list:
