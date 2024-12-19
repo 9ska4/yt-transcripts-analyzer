@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
-import csv
-import os
-import logging
 import argparse
+import csv
+import logging
+import os
 from datetime import datetime
+
 from logging_config import setup_logging
 
 
@@ -18,7 +19,7 @@ def parse_arguments():
     parser = argparse.ArgumentParser(description="Filter videos based on publication date.")
     parser.add_argument('--start_date', type=str, default='2024-01-01', help='Start date in YYYY-MM-DD format')
     parser.add_argument('--end_date', type=str, default='2025-12-31', help='End date in YYYY-MM-DD format')
-    parser.add_argument('--input_file', type=str, default='generated/all_videos.csv', help='Path to input CSV file')
+    parser.add_argument('--input_file', type=str, default='generated/videos.csv', help='Path to input CSV file')
     parser.add_argument('--output_file', type=str, default='generated/filtered_videos.csv', help='Path to output CSV file')
     return parser.parse_args()
 

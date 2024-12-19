@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
-import os
-import csv
-import re
 import argparse
+import csv
 import logging
-from datetime import datetime
+import os
+import re
+
+from logging_config import setup_logging
 
 # Default path to the CSV file
 DEFAULT_INPUT_FILE = 'filtered_videos.csv'
@@ -18,26 +19,6 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(script_dir, '..'))
 GENERATED_DIR = os.path.join(project_root, 'generated')
 
-# Get the script name without extension
-script_name = os.path.splitext(os.path.basename(__file__))[0]
-
-# Get the current timestamp
-timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-
-# Create the log filename
-log_filename = f"logs_{script_name}_{timestamp}.log"
-log_file_path = os.path.join(GENERATED_DIR, log_filename)
-
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,  # Change to DEBUG for more detailed logs
-    format='%(asctime)s [%(levelname)s] %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S',
-    handlers=[
-        logging.FileHandler(log_file_path),
-        logging.StreamHandler()
-    ]
-)
 
 def sanitize_channel_handle(channel_handle):
     """
@@ -101,13 +82,18 @@ def find_missing_transcriptions(filtered_videos_map, transcription_dir):
     return missing
 
 def main():
+
+    # Setup logging
+    script_name = os.path.splitext(os.path.basename(__file__))[0]
+    setup_logging(script_name)
+
     # Configure command-line arguments
     parser = argparse.ArgumentParser(description="Check for missing transcription files.")
     parser.add_argument(
         'input_file',
         nargs='?',
         default=DEFAULT_INPUT_FILE,
-        help=f'Path to the CSV file with filtered videos (default: {DEFAULT_INPUT_FILE})'
+        help=f'Path to the CSV file with videos that should have downloaded transcriptions (default: {DEFAULT_INPUT_FILE})'
     )
 
     args = parser.parse_args()

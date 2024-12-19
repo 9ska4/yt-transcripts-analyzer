@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 
 import csv
-import os
 import logging
+import os
 import re
-from datetime import datetime
 
+from dotenv import load_dotenv
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from dotenv import load_dotenv
+
+from logging_config import setup_logging
 
 # Load environment variables from .env file
 load_dotenv()
@@ -32,27 +33,6 @@ OUTPUT_CSV = os.path.join(GENERATED_DIR, 'videos.csv')
 
 # Ensure the 'generated' directory exists
 os.makedirs(GENERATED_DIR, exist_ok=True)
-
-# Get the script name without extension
-script_name = os.path.splitext(os.path.basename(__file__))[0]
-
-# Get the current timestamp
-timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-
-# Create the log filename
-log_filename = f"logs_{script_name}_{timestamp}.log"
-log_file_path = os.path.join(GENERATED_DIR, log_filename)
-
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,  # Change to DEBUG for more detailed logs
-    format='%(asctime)s [%(levelname)s] %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S',
-    handlers=[
-        logging.FileHandler(log_file_path),
-        logging.StreamHandler()
-    ]
-)
 
 # Cache for channel handles to minimize API calls
 channel_handle_cache = {}
@@ -249,6 +229,11 @@ def main():
     """
     Handle fetching videos from playlists and appending to CSV.
     """
+
+    # Setup logging
+    script_name = os.path.splitext(os.path.basename(__file__))[0]
+    setup_logging(script_name)
+
     logging.info("Start main")
     for playlist_id in PLAYLIST_IDS:
         try:

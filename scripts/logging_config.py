@@ -6,6 +6,7 @@ from datetime import datetime
 def setup_logging(script_name, level=logging.INFO):
     """
     Configures logging to output to both console and a log file in the /logs/ directory.
+    Naming convention does not support parallel triggers!
 
     Args:
         script_name (str): The name of the script without extension.
@@ -26,7 +27,7 @@ def setup_logging(script_name, level=logging.INFO):
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
     # Create the log filename
-    log_filename = f"{script_name}_{timestamp}.log"
+    log_filename = f"{timestamp}_{script_name}.log"
     log_file_path = os.path.join(logs_dir, log_filename)
 
     # Configure logging

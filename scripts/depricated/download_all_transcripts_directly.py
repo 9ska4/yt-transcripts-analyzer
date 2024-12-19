@@ -3,9 +3,10 @@
 import csv
 import logging
 import os
-from datetime import datetime
 
 from youtube_transcript_api import YouTubeTranscriptApi
+
+from ..logging_config import setup_logging
 
 # Constants
 INPUT_CSV = 'filtered_videos.csv'
@@ -16,26 +17,6 @@ OUTPUT_DIR = os.path.join(project_root, 'transcriptions')
 GENERATED_DIR = os.path.join(project_root, 'generated')
 
 os.makedirs(GENERATED_DIR, exist_ok=True)
-
-script_name = os.path.splitext(os.path.basename(__file__))[0]
-
-timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-
-log_filename = f"logs_{script_name}_{timestamp}.log"
-log_file_path = os.path.join(GENERATED_DIR, log_filename)
-
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s [%(levelname)s] %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S',
-    handlers=[
-        logging.FileHandler(log_file_path),
-        logging.StreamHandler()
-    ]
-)
-
-logging.info("Starting transcript download process")
-
 
 def download_transcript(video_id):
     try:
@@ -71,6 +52,10 @@ def save_transcript(video_id, transcript):
 
 
 def main():
+    # Setup logging
+    script_name = os.path.splitext(os.path.basename(__file__))[0]
+    setup_logging(script_name)
+
     if not os.path.exists(OUTPUT_DIR):
         try:
             os.makedirs(OUTPUT_DIR)

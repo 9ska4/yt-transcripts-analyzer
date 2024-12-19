@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 
 import csv
-import os
 import logging
+import os
 import re
-from datetime import datetime
 
 from youtube_transcript_api import YouTubeTranscriptApi
 
+from logging_config import setup_logging
+
 # Constants
-INPUT_CSV = 'filtered_videos.csv'
+INPUT_CSV = 'generated/filtered_videos.csv'
 LANGUAGE_CODES = ['pl']
 
 # Determine the script's directory
@@ -21,28 +22,6 @@ GENERATED_DIR = os.path.join(project_root, 'generated')
 # Ensure the 'generated' directory exists
 os.makedirs(GENERATED_DIR, exist_ok=True)
 
-# Get the script name without extension
-script_name = os.path.splitext(os.path.basename(__file__))[0]
-
-# Get the current timestamp
-timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-
-# Create the log filename
-log_filename = f"logs_{script_name}_{timestamp}.log"
-log_file_path = os.path.join(GENERATED_DIR, log_filename)
-
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s [%(levelname)s] %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S',
-    handlers=[
-        logging.FileHandler(log_file_path),
-        logging.StreamHandler()
-    ]
-)
-
-logging.info("Starting transcript download process")
 
 
 def sanitize_channel_handle(channel_handle):
@@ -128,6 +107,10 @@ def main():
     """
     Handle the transcript download process.
     """
+    # Setup logging
+    script_name = os.path.splitext(os.path.basename(__file__))[0]
+    setup_logging(script_name)
+
     if not os.path.exists(OUTPUT_DIR):
         try:
             os.makedirs(OUTPUT_DIR)
