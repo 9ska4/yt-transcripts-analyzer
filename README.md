@@ -33,6 +33,7 @@ pip install -r requirements.txt
 chmod +x scripts/get_videos_for_playlists.py
 chmod +x scripts/download_transcriptions.py
 chmod +x scripts/verify_downloaded_transcriptions.py
+chmod +x scripts/filter_videos.py
 ```
 
 ## 2. Videos' list:
@@ -48,9 +49,9 @@ Explanation:
 ./scripts/get_videos_for_playlists.py
 ```
 
-### 2.2 Create target list: `filtered_videos.csv` (TODO: provide filtering, now it's manual)
+### 2.2 Create target list: `filtered_videos.csv`
 ```shell
-cp generated/videos.csv generated/filtered_videos.csv # lets take everything now
+./scripts/filter_videos.py --start_date=2024-09-01
 ```
 
 ## 3. Download transcripts:
