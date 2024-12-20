@@ -19,10 +19,17 @@ API_KEY = os.getenv('GOOGLE_API_KEY')
 
 # Constants todo: move to input param or file?
 PLAYLIST_IDS = [
-    "PLjMvEhcagzmj0PMOkCV0PrPpSWX9a0evI",  # zet
-    "PLcrRSEwRMEPVdY_16P0MhWSoTiGrcG7fh",  # rmffm 2024/2025 popoludniowa
-    "PLcrRSEwRMEPXnlauSkT2LY8GYnW--9nyZ",  # rmffm 2024/2025 poranna
+    "PLjMvEhcagzmj0PMOkCV0PrPpSWX9a0evI",  # Gosc Radia Zet
+    "PLcrRSEwRMEPVdY_16P0MhWSoTiGrcG7fh",  # Popoludniowa rozmowa RMF FM - sezon 2024/2025
+    "PLcrRSEwRMEPXnlauSkT2LY8GYnW--9nyZ",  # Poranna rozmowa RMF FM - sezon 2024/2025
+    "PLcrRSEwRMEPVhTfN7ZpPWdS_2LSDfSJ-1",  # Gosc Krzysztofa Ziemca RMF FM - sezon 2024/2025
+    "PLcrRSEwRMEPUWAj9wniRQNQ3E2RNo0-f6",  # Popoludniowa rozmowa RMF FM - sezon 2023/2024
+    "PLcrRSEwRMEPWCB-mbyUEYJBqcFZ8GZi2r",  # Poranna rozmowa RMF FM - sezon 2023/2024
+    "PLcrRSEwRMEPUT9feTlptKfJdXmVnnhB5R",  # Gosc Krzysztofa Ziemca RMF FM - sezon 2023/2024
     "PLA9b9F3EjKaK5KR1_A-J3x_emfG-1eSHC",  # wp tłit
+    "PLA9b9F3EjKaLYosYiuI22eFRk9gEx2bdW",  # Michal Wroblewski Rozmawia WP.PL
+    "PLA9b9F3EjKaKAuH621Ow536xkPJKr-Psq",  # Rozmowy z politykami WP.PL
+    "PLA9b9F3EjKaL2k7LfFNhpE5kogvoieLf9",  # Newsroom WP.pl
 ]
 
 # Determine the script's directory

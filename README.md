@@ -34,6 +34,7 @@ chmod +x scripts/get_videos_for_playlists.py
 chmod +x scripts/download_transcriptions.py
 chmod +x scripts/verify_downloaded_transcriptions.py
 chmod +x scripts/filter_videos.py
+chmod +x scripts/analyze.py
 ```
 
 ## 2. Videos' list:
@@ -51,7 +52,7 @@ Explanation:
 
 ### 2.2 Create target list: `filtered_videos.csv`
 ```shell
-./scripts/filter_videos.py --start_date=2024-09-01
+./scripts/filter_videos.py --start_date=2023-01-01
 ```
 
 ## 3. Download transcripts:
@@ -62,4 +63,9 @@ Explanation:
 ```
 By default, it's based on `filtered_videos.csv` data.
 
+## 4. Analyze:
 
+### 4.1 Run script;
+```shell
+./scripts/analyze.py
+```

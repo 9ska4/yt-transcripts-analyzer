@@ -96,7 +96,7 @@ def save_transcript(channel_handle, video_id, transcript):
     try:
         with open(file_path, 'w', encoding='utf-8') as f:
             f.write("\n".join(lines))
-        logging.info(f"Saved transcript for video ID {video_id} to {file_path}")
+        logging.debug(f"Saved transcript for video ID {video_id} to {file_path}")
         return True
     except Exception as e:
         logging.error(f"Failed to save transcript for video ID {video_id}: {e}")
