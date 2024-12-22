@@ -58,7 +58,7 @@ def download_transcript(video_id, language_codes=LANGUAGE_CODES):
         except Exception as e:
             logging.debug(f"No transcript in language '{lang}' for video ID {video_id}: {e}")
             continue
-    logging.warning(f"No transcripts available for video ID {video_id} in languages {language_codes}")
+    logging.debug(f"No transcripts available for video ID {video_id} in languages {language_codes}")
     return None
 
 
@@ -130,6 +130,7 @@ def main():
     # Read the CSV and process each video ID
     with open(input_csv_path, 'r', encoding='utf-8') as f:
         reader = csv.DictReader(f)
+        counter = 1;
         for row in reader:
             video_id = row.get('videoId')
             channel_handle = row.get('channelHandle')

@@ -69,3 +69,8 @@ By default, it's based on `filtered_videos.csv` data.
 ```shell
 ./scripts/analyze.py
 ```
+
+### 4.2 Create plot for keywords over time:
+```shell
+./scripts/analyze_keywords_over_time_moving_sum.py
+```

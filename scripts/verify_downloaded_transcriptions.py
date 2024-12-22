@@ -9,10 +9,10 @@ import re
 from logging_config import setup_logging
 
 # Default path to the CSV file
-DEFAULT_INPUT_FILE = 'filtered_videos.csv'
+DEFAULT_INPUT_FILE = '../generated/filtered_videos.csv'
 
 # Directory where transcriptions are stored
-TRANSCRIPTION_DIR = 'transcriptions'
+TRANSCRIPTION_DIR = '../transcriptions'
 
 # Determine the script's directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
